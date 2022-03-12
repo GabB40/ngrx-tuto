@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'rp-navbar',
+  selector: 'app-navbar',
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent { }

@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'rp-protected',
+  selector: 'app-protected',
   templateUrl: './protected.component.html',
 })
-export class ProtectedComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class ProtectedComponent { }
