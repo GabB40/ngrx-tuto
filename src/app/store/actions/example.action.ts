@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Something } from './../../core/models/.somethinginterface';
+import { Something } from '../../core/models/something.interface';
 
 export const action = createAction(
   '[Source] Event',

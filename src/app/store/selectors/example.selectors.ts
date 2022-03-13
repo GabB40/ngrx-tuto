@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Something } from '../../core/models/.somethinginterface';
+import { Something } from '../../core/models/something.interface';
 
-export const featureSelectSomething = createFeatureSelector<Something>('something');
+export const selectSomething = createFeatureSelector<Something[]>('somethings');
 
-export const selectSomething = createSelector(
-    featureSelectSomething,
-    something => something
+export const select1stSomething = createSelector(
+    selectSomething,
+    (state: Something[]) => state[0] ?? null
 )
