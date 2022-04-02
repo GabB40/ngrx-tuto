@@ -1,3 +1,4 @@
+import { bookReducer } from './../store/reducers/book.reducer';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -12,7 +13,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from 'src/environments/environment';
 import { reducers } from './../store/app.state';
-import { RouterSerializer } from '../store/router/routerSerializer';
 
 import { PublicModule } from '../public/public.module';
 import { ProtectedModule } from '../protected/protected.module';
@@ -35,7 +35,7 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule,
     BrowserModule,
     StoreModule.forRoot(
-      reducers,
+      {plop: bookReducer},
       {
         // metaReducers,
         runtimeChecks: {
@@ -48,9 +48,6 @@ registerLocaleData(localeFr, 'fr');
     ),
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot({
-      serializer: RouterSerializer
-    }),
     BrowserAnimationsModule,
     PublicModule,
     ProtectedModule
