@@ -137,6 +137,6 @@
   },
   "defaultProject": "angular-base-project",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "defaultCollection": "@ngrx/schematics"
   }
 }

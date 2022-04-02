@@ -1,0 +1,17 @@
+<div class="container m-5">
+    <h2 class="text-primary">Mon espace</h2>
+    <div class="card mx-2 my-4">
+        <div class="card-body m-3">
+            <p>
+                Il y a actuellement <strong *ngIf="books$ | async as books;else loading">{{ books?.length }} livre(s)</strong> dans mon espace
+            </p>
+            <button class="btn btn-primary" routerLink="/my-space/my-books">Allez dans mon espace</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <div class="spinner-border spinner-border-sm" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</ng-template>
