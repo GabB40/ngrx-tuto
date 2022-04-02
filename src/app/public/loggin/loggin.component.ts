@@ -8,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogginComponent implements OnInit {
 
+  isLoggedIn!: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.isLoggedIn = false;
+  }
+
+  onConnect(loggIn = true) {
+    this.isLoggedIn = loggIn;
   }
 
 }
