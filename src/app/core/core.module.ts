@@ -31,9 +31,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
         runtimeChecks: {
           strictStateImmutability: true,
           strictActionImmutability: true,
+          strictStateSerializability: true,
           strictActionSerializability: true,
-          strictStateSerializability: true
-        }
+          strictActionWithinNgZone: true,
+          strictActionTypeUniqueness: true,
+        },
       }
     ),
     EffectsModule.forRoot(),
