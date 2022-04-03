@@ -1,7 +1,8 @@
-import { BookService } from './../../core/services/book.service';
-import { Book } from './../../core/models/book.interface.';
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectBooksCount } from './../../store/selectors/book.selectors';
+import { selectUserIsLoggedIn } from './../../store/selectors/user.selectors';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  books$!: Observable<Book[]>;
-  
-  constructor(private bookService: BookService) { }
+  isUserLoggedIn$!: Observable<boolean>;
+  booksCount$!: Observable<number>;
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.books$ = this.bookService.getBooks();
+    this.isUserLoggedIn$ = this.store.select(selectUserIsLoggedIn);
+    this.booksCount$ = this.store.select(selectBooksCount);
   }
 
 }

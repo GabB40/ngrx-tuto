@@ -1,9 +1,13 @@
+import { createReducer, on } from '@ngrx/store';
 import { Book } from './../../core/models/book.interface.';
-import { Action, createReducer, on } from '@ngrx/store';
+import { getBooksSuccess } from './../actions/book.actions';
 
-export const initialState: readonly Book[] = [];
+export const booksFeatureKey = 'books';
+
+export const initialState: Book[] = [];
 
 export const bookReducer = createReducer(
-  // <readonly Book[]>[] ==> si on ne passe pas par la const initialState
-  initialState
+  // <Book[]>[] ==> si on ne passe pas par la const initialState
+  initialState,
+  on(getBooksSuccess, (state, { books }) => books)
 );

@@ -1,15 +1,25 @@
 <div class="container m-5">
     <h2 class="text-primary">Mes livres</h2>
-    <ng-container *ngIf="books$ | async as books; else loading">
-        <ul class="list-group mt-3 mx-3">
-            <li class="list-group-item" *ngFor="let book of books">
-                <h5>{{ book.volumeInfo.title}}</h5>
-                <em>@{{ book.volumeInfo.authors}}</em>
-            </li>
-        </ul>
+    <!-- On teste si l'utilisateur est connecté : si oui, on passe au 2ème *ngIf, sinon, on charge le template #connection -->
+    <ng-container *ngIf="isUserLoggedIn$ | async;else connection">
+        <!-- On teste si la requête back a abouti et a retourné des livres : si oui, on affiche la liste de livres, sinon, on charge le template #loading -->
+        <ng-container *ngIf="booksCount$ | async; else loading">
+            <ul class="list-group mt-3 mx-3">
+                <li class="list-group-item" *ngFor="let book of books$ | async">
+                    <h5>{{ book.volumeInfo.title}}</h5>
+                    <em>@{{ book.volumeInfo.authors}}</em>
+                </li>
+            </ul>
+        </ng-container>
     </ng-container>
 </div>
 
+<!-- Template 'connection' pour si user non connecté -->
+<ng-template #connection>
+    <app-connection-required></app-connection-required>
+</ng-template>
+
+<!-- Template 'loading' pour loader/spinner lors du chargement des livres suite requête http -->
 <ng-template #loading>
     <div class="d-flex justify-content-center mt-5">
         <div class="spinner-border text-primary" role="status">

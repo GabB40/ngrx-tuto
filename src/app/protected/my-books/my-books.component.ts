@@ -1,7 +1,9 @@
-import { Book } from './../../core/models/book.interface.';
-import { Observable } from 'rxjs';
-import { BookService } from './../../core/services/book.service';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Book } from './../../core/models/book.interface.';
+import { selectBooks, selectBooksCount } from './../../store/selectors/book.selectors';
+import { selectUserIsLoggedIn } from './../../store/selectors/user.selectors';
 
 @Component({
   selector: 'app-my-books',
@@ -11,12 +13,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyBooksComponent implements OnInit {
 
+  isUserLoggedIn$!: Observable<boolean>;
+  booksCount$!: Observable<number>;
   books$!: Observable<Book[]>;
-  
-  constructor(private bookService: BookService) { }
+
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.books$ = this.bookService.getBooks();
+    this.isUserLoggedIn$ = this.store.select(selectUserIsLoggedIn);
+    this.booksCount$ = this.store.select(selectBooksCount);
+    this.books$ = this.store.select(selectBooks);
   }
 
 }

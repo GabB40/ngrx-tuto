@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Book } from './../models/book.interface.';
 
-
 @Injectable({ providedIn: 'root' })
 export class BookService {
   constructor(private http: HttpClient) { }
