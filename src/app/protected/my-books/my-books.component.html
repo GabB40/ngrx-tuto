@@ -1,14 +1,22 @@
 <div class="container m-5">
     <h2 class="text-primary">Mes livres</h2>
-    <ng-container *ngIf="books$ | async as books; else loading">
-        <ul class="list-group mt-3 mx-3">
-            <li class="list-group-item" *ngFor="let book of books">
-                <h5>{{ book.volumeInfo.title}}</h5>
-                <em>@{{ book.volumeInfo.authors}}</em>
-            </li>
-        </ul>
+    <!-- On teste si l'utilisateur est connecté : si oui, on passe au 2ème *ngIf, sinon, on charge le template #connection -->
+    <ng-container *ngIf="true;else connection">
+        <ng-container *ngIf="books$ | async as books; else loading">
+            <ul class="list-group mt-3 mx-3">
+                <li class="list-group-item" *ngFor="let book of books">
+                    <h5>{{ book.volumeInfo.title}}</h5>
+                    <em>@{{ book.volumeInfo.authors}}</em>
+                </li>
+            </ul>
+        </ng-container>
     </ng-container>
 </div>
+
+<!-- Template 'connection' pour si user non connecté -->
+<ng-template #connection>
+    <app-connection-required></app-connection-required>
+</ng-template>
 
 <ng-template #loading>
     <div class="d-flex justify-content-center mt-5">

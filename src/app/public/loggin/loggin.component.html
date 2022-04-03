@@ -3,13 +3,20 @@
         <div class="card-body">
             <ng-container *ngIf="!isLoggedIn;else loggout">
                 <h5 class="card-title text-primary">Se connecter à son espace</h5>
+
+                <!-- div conditionnelle pour les messages d'erreur -->
+                <ng-container *ngIf="errorMsg">
+                    <div class="alert alert-danger m-3">{{ errorMsg }}</div>
+                </ng-container>
+                <!-- FIN div conditionnelle pour les messages d'erreur -->
+
                 <div class="my-3">
                     <label for="login" class="form-label">Identifiant</label>
-                    <input type="text" class="form-control" id="login" value="plop">
+                    <input type="text" class="form-control" id="login" [(ngModel)]="userIdentifiant">
                 </div>
                 <div class="my-3">
                     <label for="pwd" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="pwd" value="123456">
+                    <input type="password" class="form-control" id="pwd" [(ngModel)]="userPassword">
                 </div>
                 <button class="btn btn-primary mt-3" (click)="onConnect()">Connexion</button>
             </ng-container>
@@ -17,6 +24,10 @@
     </div>
 
     <ng-template #loggout>
+        <h5 class="text-primary">Ravi de vous revoir <strong class="text-success m-2">{{ userIdentifiant }}</strong></h5>
+        <button class="btn btn-outline-info btn-sm mt-3 me-4" routerLink="/my-space">Mon espace</button>
+        <button class="btn btn-outline-secondary btn-sm mt-3" routerLink="/my-space/my-books">Mes livres</button>
+        <hr class="my-4">
         <h5 class="card-title text-primary mb-4">Se déconnecter de son espace</h5>
         <button class="btn btn-primary" (click)="onConnect(false)">Déconnexion</button>
     </ng-template>
