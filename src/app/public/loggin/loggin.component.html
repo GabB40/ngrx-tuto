@@ -24,6 +24,10 @@
     </div>
 
     <ng-template #loggout>
+        <h5 class="text-primary">Ravi de vous revoir <strong class="text-success m-2">{{ userIdentifiant }}</strong></h5>
+        <button class="btn btn-outline-info btn-sm mt-3 me-4" routerLink="/my-space">Mon espace</button>
+        <button class="btn btn-outline-secondary btn-sm mt-3" routerLink="/my-space/my-books">Mes livres</button>
+        <hr class="my-4">
         <h5 class="card-title text-primary mb-4">Se déconnecter de son espace</h5>
         <button class="btn btn-primary" (click)="onConnect(false)">Déconnexion</button>
     </ng-template>

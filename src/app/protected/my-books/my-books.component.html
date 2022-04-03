@@ -5,9 +5,9 @@
         <!-- On teste si la requête back a abouti et a retourné des livres : si oui, on affiche la liste de livres, sinon, on charge le template #loading -->
         <ng-container *ngIf="booksCount$ | async; else loading">
             <ul class="list-group mt-3 mx-3">
-                <li class="list-group-item" *ngFor="let book of books$ | async">
-                    <h5>{{ book.volumeInfo.title}}</h5>
-                    <em>@{{ book.volumeInfo.authors}}</em>
+                <li class="list-group-item p-4" *ngFor="let book of books$ | async">
+                    <h5 class="text-info">{{ book.volumeInfo.title}}</h5>
+                    <em class="text-primary">@{{ book.volumeInfo.authors}}</em>
                 </li>
             </ul>
         </ng-container>
